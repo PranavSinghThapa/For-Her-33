@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry Styles - Keep Driving</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pacifico', cursive;
+      background-color: #800020;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .lyrics {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+      z-index: 10;
+    }
+    .image-container img {
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+      transition: opacity 1s ease-in-out;
+    }
+    .hidden {
+      opacity: 0;
+    }
+    .play-icon, .heart-icon, .restart-button {
+      width: 75px;
+      height: 75px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .play-icon:hover, .heart-icon:hover, .restart-button:hover {
+      transform: scale(1.2);
+    }
+    .heart-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .note-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      display: none;
+    }
+    .note-overlay p {
+      width: 80%;
+      max-height: 60vh; /* Set a maximum height */
+      padding: 20px;
+      font-size: 1.2rem;
+      border: 2px solid #800020;
+      border-radius: 10px;
+      text-align: left;
+      background-color: #fff;
+      color: #800020;
+      overflow-y: auto; /* Enable vertical scrolling */
+      scrollbar-width: thin; /* Optional: Customize scrollbar */
+      scrollbar-color: #800020 #fff; /* Optional: Customize scrollbar colors */
+    }
+    .close-note {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #800020;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .floating-images img {
+      position: absolute;
+      width: 250px;
+      animation: float 10s infinite ease-in-out, fadeIn 2s ease-in-out;
+      opacity: 0; /* Start invisible */
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .floating-images img:nth-child(1) {
+      top: 10%;
+      left: 10%;
+    }
+    .floating-images img:nth-child(2) {
+      top: 10%;
+      right: 10%;
+    }
+    .floating-images img:nth-child(3) {
+      bottom: 10%;
+      left: 10%;
+    }
+    .floating-images img:nth-child(4) {
+      bottom: 10%;
+      right: 10%;
+    }
+    .car-image {
+      position: absolute;
+      bottom: 20px;
+      right: -450px;
+      width: 500px;
+      transition: transform 8s linear;
+    }
+    .car-image.animate {
+      transform: translateX(-150vw);
+    }
+    .restart-button {
+      display: none;
+      margin-top: 10px; /* Adjust spacing below the lyrics */
+      width: 75px;
+      height: 75px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Harry Styles - Keep Driving</h1>
+  <img src="heart.png" alt="Heart Icon" class="heart-icon" id="heartIcon">
+  <img src="play.png" alt="Play Icon" class="play-icon" id="playIcon">
+  <div class="lyrics" id="lyrics"></div>
+  <img src="play.png" alt="Restart Button" class="restart-button" id="restartButton">
+  <div class="image-container" id="images">
+    <img id="maple-syrup" src="maple-syrup.png" alt="Maple Syrup" class="hidden">
+    <img id="coffee" src="coffee.png" alt="Coffee" class="hidden">
+    <img id="pancakes" src="pancakes.png" alt="Pancakes" class="hidden">
+    <img id="hash-brown" src="hashbrown.png" alt="Hash Brown" class="hidden">
+    <img id="egg-yolk" src="egg-yolk.png" alt="Egg Yolk" class="hidden">
+  </div>
+  <div class="floating-images" id="floatingImages" style="display: none;">
+    <img src="snoopy.png" alt="Snoopy">
+    <img src="chocolate.png" alt="Chocolates">
+    <img src="flowers.png" alt="Flowers">
+    <img src="pleasing.png" alt="Hoodie">
+  </div>
+  <img src="porsche918.png" alt="Car" class="car-image" id="carImage">
+  <div class="note-overlay" id="noteOverlay">
+    <p>
+        My dearest Apekshya, 
+        <br><br>
+        
+        I want you to know that I’m extremely sorry for how I didn’t ask you out, think of things to do on valentines day and especially for how I just walked away. I’m aware you’ve said that I can’t make up for it but I had already done a lot of things in making this so, I did more and maybe it does the magic of making up somewhat for it.
+        <br><br>
+        
+        
+        I hope you like it. I’ve kept everything you like from the sunflowers, roses, dark chocolate and snoopy to pleasing and your favourite car porsche 918 in your previously favourite color purple. The background is your favourite color too though I still don’t know how to spell it 😭. Also lmao, I did this because I couldn’t get a fix but yeah I think you’d love how the car just reverses back when you press the restart button.
+        <br><br>
+        
+        
+        You’ve been the best girlfriend ever and I’m sorry for not making you feel special yesterday. You really are way too special for me my Apekshya. And, though its not valentines anymore I’d still consider it to make you feel special. 
+        <br><br>
+        
+        
+        I’d love to take you out after our exams are over, come to pick you up, give you all the gifts I’ve been buying and will buy and just give you all the love and care you need. I’m so grateful to have you in my life. You’re the bestttt.
+        <br><br>
+        
+        I always wanted to post you btw. I’d understand if you wouldn’t want me to post today but I do really want to. 
+        <br><br>
+        
+        The thing is Apekshya, I think I misunderstood what you like and don’t. I should have understood you better of how you’d love to be posted on valentines, took the initiation and made you feel special on valentines day. I misjudged like you know how you had said, me randomly saying or doing something makes the relationship feel a bit stressful like the big note I randomly wrote one night. Like I should have just understand yesterday wasn't random na ukwim. Yeah, I should have known properly. Tara saying that, I knew I should have atleast stayed during valentines day and I’m really sorry for just going away.
+        <br><br>
+        
+        You know Apekshya, I’ll be a better man and fix all those things. I wouldn’t ever walk away on a day like that and I’ll understand you better. I feel I still have misunderstood something like I think you’d love things that you said you kind of found cringe or maybe not, I need to confirm. You really opened my eyes with that example of relatives lai ajhai basa bhan ne, yeah it was my duty to ask you and I will fulfill my duty.
+        <br><br>
+        
+         I’m sorry for ruining your valentines this year. I’ll make sure to make the next valentines the bestttttt valentines ever and not just that but make each and your everyday as bright as I can. 
+        <br><br>
+        
+        You deserve way better than what I did yesterday and I’ll make sure to makeup things with my actions.
+        <br><br>
+        I LOVE YOU AND I MISS YOU A LOT.
+        <br><br>
+        Your Pranu❤️❤️❤️
+        
+    </p>
+    <button class="close-note" id="closeNote">Close</button>
+  </div>
+  <audio id="audio" src="keep-driving.mp3" preload="auto"></audio>
+  <script>
+    const lyrics = [
+      { time: 45, text: "Maple syrup", images: ["maple-syrup"] },
+      { time: 47, text: "Coffee", images: ["coffee"] },
+      { time: 48, text: "Pancakes for two", images: ["pancakes"] },
+      { time: 53.5, text: "Hash brown", images: ["hash-brown"] },
+      { time: 55, text: "Egg yolk", images: ["egg-yolk"] },
+      { time: 56, text: "I will always love you........", images: [] },
+      { time: 59, text: "", images: ["maple-syrup", "coffee", "pancakes", "hash-brown", "egg-yolk"] },
+      { time: 62, text: "A small concern with how the engine sounds", images: [] },
+      { time: 67, text: "We held darkness in withheld clouds", images: [] },
+      { time: 71, text: "I would ask, \'Should we just keep driving?\'", images: [] },
+      { time: 75, text: "", images: [] },
+      { time: 77, text: "\'Should we just keep driving?\'", images: [] },
+      { time: 80, text: "", images: [] }
+    ];
+    const audio = document.getElementById('audio');
+    const lyricsDiv = document.getElementById('lyrics');
+    const imagesContainer = document.getElementById('images');
+    const playIcon = document.getElementById('playIcon');
+    const heartIcon = document.getElementById('heartIcon');
+    const noteOverlay = document.getElementById('noteOverlay');
+    const closeNote = document.getElementById('closeNote');
+    const floatingImages = document.getElementById('floatingImages');
+    const carImage = document.getElementById('carImage');
+    const restartButton = document.getElementById('restartButton');
+    let currentLyricIndex = 0;
+
+    function resetAnimation() {
+      // Reset all elements
+      Array.from(imagesContainer.children).forEach(img => img.classList.add('hidden'));
+      floatingImages.style.display = 'none';
+      carImage.classList.remove('animate');
+      carImage.style.transform = 'translateX(0)';
+      lyricsDiv.textContent = '';
+      currentLyricIndex = 0;
+      audio.currentTime = 45;
+      audio.play();
+      playIcon.style.display = 'none';
+      restartButton.style.display = 'none';
+      showLyricAndImages(0);
+    }
+
+    function showLyricAndImages(index) {
+      const lyric = lyrics[index];
+      if (!lyric) return;
+      lyricsDiv.textContent = lyric.text;
+      Array.from(imagesContainer.children).forEach(img => img.classList.add('hidden'));
+      lyric.images.forEach(id => {
+        const img = document.getElementById(id);
+        if (img) img.classList.remove('hidden');
+      });
+      if (index === 6) {
+        // Hide all food items at once
+        setTimeout(() => {
+          Array.from(imagesContainer.children).forEach(img => img.classList.add('hidden'));
+          // Show floating images with fade-in effect after 1 second
+          setTimeout(() => {
+            floatingImages.style.display = 'block';
+            Array.from(floatingImages.children).forEach(img => img.style.opacity = 1); // Ensure they stay visible
+          }, 1000); // Delay of 1 second
+        }, 1000); // Delay to hide food items
+      }
+      if (index === lyrics.length - 3) {
+        carImage.classList.add('animate');
+      }
+      if (index + 1 < lyrics.length) {
+        setTimeout(() => showLyricAndImages(index + 1), (lyrics[index + 1].time - lyric.time) * 1000);
+      } else {
+        // Song ends, show "I'm sorry" and "I love you"
+        setTimeout(() => {
+          lyricsDiv.textContent = "I'm sorry";
+          setTimeout(() => {
+            lyricsDiv.textContent = "I love you Apekshya";
+            setTimeout(() => {
+              lyricsDiv.textContent = "";
+              restartButton.style.display = 'block';
+            }, 1000);
+          }, 1000);
+        }, 2000); // Delay of 2 seconds after song ends
+      }
+    }
+
+    playIcon.addEventListener('click', () => {
+      audio.currentTime = 45;
+      audio.play();
+      playIcon.style.display = 'none';
+      showLyricAndImages(0);
+    });
+
+    heartIcon.addEventListener('click', () => {
+      noteOverlay.style.display = 'flex';
+    });
+
+    closeNote.addEventListener('click', () => {
+      noteOverlay.style.display = 'none';
+    });
+
+    restartButton.addEventListener('click', () => {
+      resetAnimation();
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.currentTime >= 82) {
+        audio.pause();
+      }
+    });
+  </script>
+</body>
+</html>
